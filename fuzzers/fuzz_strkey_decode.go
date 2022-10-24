@@ -7,4 +7,4 @@ func Fuzz(data []byte) int {
 	strkey.Decode(strkey.VersionByteAccountID, string(data))
 	return 0
 }
-n
+

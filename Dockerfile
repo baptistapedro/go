@@ -13,6 +13,9 @@ ENV PATH=$PATH:/usr/local/go/bin
 ADD . /stellar-go
 WORKDIR /stellar-go
 # Harness file
+# Change the fuzz harness to build
+# here it uses the harness in the ./strkey/ dir
+# fuzz_strkey_decode.go
 ADD fuzzers/strkey/fuzz_strkey_decode.go ./fuzzers/
 WORKDIR ./fuzzers/
 RUN go install github.com/dvyukov/go-fuzz/go-fuzz@latest github.com/dvyukov/go-fuzz/go-fuzz-build@latest

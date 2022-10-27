@@ -16,8 +16,8 @@ WORKDIR /stellar-go
 # Change the fuzz harness to build
 # here it uses the harness in the ./strkey/ dir
 # fuzz_strkey_decode.go
-ADD fuzzers/strkey/fuzz_strkey_decode.go ./fuzzers/
-WORKDIR ./fuzzers/
+ADD ./strkey/fuzz_strkey_decode.go ./harnesses/
+WORKDIR ./harnesses/
 RUN go install github.com/dvyukov/go-fuzz/go-fuzz@latest github.com/dvyukov/go-fuzz/go-fuzz-build@latest
 RUN go get github.com/dvyukov/go-fuzz/go-fuzz-dep
 RUN go get github.com/stellar/go/strkey
@@ -26,7 +26,7 @@ RUN /root/go/bin/go-fuzz-build -libfuzzer -o harness.a
 RUN clang -fsanitize=fuzzer harness.a -o fuzz_strkey_decode 
 
 FROM ubuntu:20.04
-COPY --from=builder /stellar-go/fuzzers/fuzz_strkey_decode /
+COPY --from=builder /stellar-go/harnesses/fuzz_strkey_decode /
 
 ENTRYPOINT []
 CMD ["/fuzz_strkey_decode"]

@@ -1,7 +1,6 @@
 package stellargofuzz
-import (
-	"github.com/stellar/go/strkey"
-)
+import "github.com/stellar/go/strkey"
+
 
 func Fuzz(data []byte) int {
 	strkey.Decode(strkey.VersionByteAccountID, string(data))

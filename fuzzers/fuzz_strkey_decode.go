@@ -1,4 +1,4 @@
-package myfuzz
+package stellargofuzz
 import (
 	"github.com/stellar/go/strkey"
 )
